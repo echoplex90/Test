@@ -1,0 +1,42 @@
+# Final Project Draft
+# Bryan Helton
+# Bellevue University
+
+# Importing json and requests.
+import json
+import requests
+
+def weather():
+# Defining the URL information and city input.
+  base_url = "https://api.openweathermap.org/data/2.5/weather"
+  appid = ""
+  city = input("\nPlease input the city you want to check. ")
+
+# Building the URL and then printing it.
+  url = f"\n{base_url}?q={city}&units=imperial&APPID={appid}"
+  print(url)
+  print ()
+
+# Taking the request information and putting it into unformatted data.
+  response = requests.get(url)
+  unformatted_data = response.json()
+
+# Taking the current temperature and max temperature and displaying it.
+  temp = unformatted_data["main"]["temp"]
+  print(f"The current temp is: {temp}")
+
+  temp_max = unformatted_data["main"]["temp_max"]
+  print (f"The max temp is: {temp_max}\n")
+
+# Setting while loop to be able to run program again.
+while True:
+  print("Would you like to check the weather in a city?\n")
+  option = str(input("Enter yes or no: "))
+  
+  if option == 'yes':
+    weather()
+  elif option == 'no':
+    print("\nEnjoy the weather outside!")
+    break
+  else:
+    print("\nPlease enter yes or no:")
